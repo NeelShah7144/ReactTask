@@ -1,7 +1,7 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Task from './components/Task';
-import UpdatedDataPage from './components/UpdatedDataPage';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Task from "./components/Task";
+import UpdatedDataPage from "./components/UpdatedDataPage";
 
 function App() {
   return (

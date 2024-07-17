@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import DataTable from './DataTable'; // Adjust the path based on your project structure
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import DataTable from "./DataTable"; // Adjust the path based on your project structure
 
 interface SkuPrice {
   wholesale_price: number;
@@ -25,13 +25,14 @@ const Task: React.FC = () => {
         "https://eaf-dms-api.yecor.com/api/pricing/productprice/?warehouse_id=22&ordering=&brand_id=&category_id__id=&variants__group_name__id=&limit=10000&show_future_price=false",
         {
           headers: {
-            Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo5MSwidXNlcm5hbWUiOiJlYWZydWl0c3VhdHdtQHlvcG1haWwuY29tIiwiZXhwIjoxNzIxNzM2MjgxLCJlbWFpbCI6ImVhZnJ1aXRzdWF0d21AeW9wbWFpbC5jb20iLCJvcmlnX2lhdCI6MTcyMDQ0MDI4MX0.K8jiMtlHbWJu_O5gjQY6Www_Jwbxu_602fD8Q5wwoLc'
-          }
+            Authorization:
+              "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo5MSwidXNlcm5hbWUiOiJlYWZydWl0c3VhdHdtQHlvcG1haWwuY29tIiwiZXhwIjoxNzIxNzM2MjgxLCJlbWFpbCI6ImVhZnJ1aXRzdWF0d21AeW9wbWFpbC5jb20iLCJvcmlnX2lhdCI6MTcyMDQ0MDI4MX0.K8jiMtlHbWJu_O5gjQY6Www_Jwbxu_602fD8Q5wwoLc",
+          },
         }
       );
 
-      console.log('API response:', response); // Log the entire response
-      console.log('API response data:', response.data); // Log the response data
+      console.log("API response:", response); // Log the entire response
+      console.log("API response data:", response.data); // Log the response data
 
       const data = response.data.results;
 
@@ -41,10 +42,10 @@ const Task: React.FC = () => {
         //   id: item.id,
         //   product_sku_price: item.product_sku_price.map((sku: any) => ({
         //     wholesale_price: sku.wholesale_price,
-        //     wholesale_expiry_price: sku.wholesale_expiry_price, 
+        //     wholesale_expiry_price: sku.wholesale_expiry_price,
         //     retail_price: sku.retail_price,
         //     effective_date: sku.effective_date,
-        //     retail_expiry_price: sku.retail_expiry_price, 
+        //     retail_expiry_price: sku.retail_expiry_price,
         //   }))
         // }));
         setMyData(data);
@@ -66,6 +67,6 @@ const Task: React.FC = () => {
       <DataTable data={myData} />
     </div>
   );
-}
+};
 
 export default Task;
