@@ -1,25 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import "./App.css";
+import { generateToken, messaging } from "./notifications/firebase";
+import { onMessage } from "firebase/messaging";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import HomePage from "./Components/HomePage";
+import NotificationPage from "./Components/NotificationPage";
+import toast, { Toaster } from "react-hot-toast";
 
 function App() {
+  useEffect(() => {
+    generateToken();
+    onMessage(messaging, (payload) => {
+      console.log(payload);
+      const { title, body } = payload.data || {};
+
+      if (title && body) {
+        toast.success(`${title}: ${body}`);
+      } else {
+        toast.error("Notification received with no title or body");
+      }
+    });
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Toaster />
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/notification" element={<NotificationPage />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 
